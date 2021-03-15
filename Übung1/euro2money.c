@@ -2,19 +2,24 @@
 #include <stdlib.h>
 
 void euro2money(int euro){
-    printf("Eingegebener Eurobetrag: %i\n",euro);
+    int euros[] = {500,200,100,50,20,10,5,2,1};
 
-    if(euro >= 500){
-        int euro500 = euro/500;
-        printf("500 Euroscheine: %i\n",euro500);
-    }
-    euro = euro%500;
+    printf("Eingegebener Eurobetrag: %d\n",euro);
 
-    
+    for (int i = 0; i<sizeof(euros);i++){ 
+
+        if(euro >= euros[i]){
+            int help = euro/euros[i];
+            printf("%d Euroscheine: %d\n",euros[i],help);
+        }
+        euro = euro%euros[i];
+
+    } 
+
 }
 
 int main (void){
     euro2money(2000);
-
-
+    euro2money(1418);
+    return 0;
 }
