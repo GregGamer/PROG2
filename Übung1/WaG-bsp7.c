@@ -11,23 +11,67 @@
 int main (){
     //variablen
     int input;
-    int roemischen_zahlen[] = {1000,900,500,400,100,90,50,40,10,9,5,4,1};
-    const char *roemischen_zeichen[] = {"M","CM","D","CD","C","XC","L","XL","IX","V","IV","I"};
 
     //input
     printf("Zahl eingeben: ");
     scanf("%d",&input);
-
+    
     printf("Roemische Zahl: ");
-
-    for(int i = 0; i < (int)sizeof(roemischen_zahlen); ++i){
-        
-        for(int j = 0; j < (int)(input/roemischen_zahlen[i]); ++j){
-            printf("%s", roemischen_zeichen[i]); 
+    
+    while(input != 0){
+        if(input > 1000){
+            printf("M");
+            input -= 1000;
         }
-        input %= roemischen_zahlen[i];
-
+        else if(input > 900){
+            printf("CM");
+            input -= 900;
+        }
+        else if(input > 500){
+            printf("D");
+            input -= 500;
+        }
+        else if(input > 400){
+            printf("CD");
+            input -= 400;
+        }
+        else if(input > 100){
+            printf("C");
+            input -= 100;
+        }
+        else if(input > 90){
+            printf("XC");
+            input -= 90;
+        }
+        else if(input > 50){
+            printf("L");
+            input -= 50;
+        }
+        else if(input > 40){
+            printf("XL");
+            input -= 40;
+        }
+        else if(input > 10){
+            printf("X");
+            input -= 10;
+        }
+        else if(input > 9){
+            printf("IX");
+            input -= 9;
+        }
+        else if(input > 5){
+            printf("V");
+            input -= 5;
+        }
+        else if(input > 4){
+            printf("IV");
+            input -= 4;
+        }
+        else if(input >= 1){
+            printf("I");
+            input -= 1;
+        }
     }
-
+    printf("\n");
     return 0;
 }
