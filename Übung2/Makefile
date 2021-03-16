@@ -1,4 +1,4 @@
-I={1..11}
+I={1..2}
 USER= WaG
 SOURCES = $(shell find . -iname '*.c' -exec basename {} .c ';') 
 
@@ -10,11 +10,15 @@ say_hello:
 
 files:
 	@echo "Creating empty text files..."
-	touch ${USER}-bsp{1..11}.c
+	touch ${USER}-bsp${I}.c
 
-clearn:
+clean:
 	@echo "Cleaning up"
 	rm *.exe
 
 %: %.c
-	gcc -o $@.exe -lm -g -Wall $<
+	gcc -o $@.exe -g -Wall $< -lm 
+
+abgabe:
+	tar cf ${USER}-bsp.tar *.c Makefile
+	gzip *.tar
