@@ -17,7 +17,7 @@ clean:
 	rm *.exe
 
 %: %.c
-	gcc -o $@.exe -lm -g -Wall $<
+	gcc -o $@.exe -g -Wall $< -lm 
 
 abgabe:
 	tar cf {USER}-bsp.tar *.c *.h Makefile
