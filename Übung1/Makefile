@@ -12,9 +12,13 @@ files:
 	@echo "Creating empty text files..."
 	touch ${USER}-bsp{1..11}.c
 
-clearn:
+clean:
 	@echo "Cleaning up"
 	rm *.exe
 
 %: %.c
 	gcc -o $@.exe -lm -g -Wall $<
+
+abgabe:
+	tar cf {USER}-bsp.tar *.c *.h Makefile
+	gzip *.tar
