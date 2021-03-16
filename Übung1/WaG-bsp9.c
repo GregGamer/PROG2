@@ -21,17 +21,18 @@ int main (void){
     printf("Punkt Zx: ");
     scanf("%d",&end[1]);
 
-    for(;start[0]!=end[0] && start[1]!=end[1];){
+    for(;start[0]!=end[0] || start[1]!=end[1];){
+        
+        start[0] = start[0] + (start[0]<end[0]) * 1 + (start[0]>end[0]) * -1;
+        start[1] = start[1] + (start[1]<end[1]) * 1 + (start[1]>end[1]) * -1;
         
         printf("Fx: %d von %d\n",start[0],end[0]);
         printf("Fy: %d von %d\n",start[1],end[1]);       
 
-        start[0] = start[0] + (start[0]<end[0]) * 1 + (start[0]>end[0]) * -1;
-        start[1] = start[1] + (start[1]<end[1]) * 1 + (start[1]>end[1]) * -1;
-    }
+   }
 
 
-    printf("Punkt erreicht");
+    printf("Punkt erreicht\n");
 
 
     return 0;
