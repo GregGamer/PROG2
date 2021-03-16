@@ -1,4 +1,4 @@
-//Gregor Wagner
+//Gregor Wagner, Marie Strohm, Jonas Kronberger, Arved Didio
 //WaG-bsp7.c
 
 //include

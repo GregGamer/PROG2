@@ -1,4 +1,4 @@
-//Gregor Wagner
+//Marie Strohm, Gregor Wagner, Jonas Kronberger, Arved Didio
 //WaG-bsp2.c
 
 #include <stdio.h>

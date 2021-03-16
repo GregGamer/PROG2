@@ -1,4 +1,4 @@
-//Gregor Wagner
+//Gregor Wagner, Marie Strohm, Jonas Kronberger, Didio Arved
 //WaG-bsp11.c
 
 //Libraries

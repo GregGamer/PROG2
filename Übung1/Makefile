@@ -20,5 +20,5 @@ clean:
 	gcc -o $@.exe -g -Wall $< -lm 
 
 abgabe:
-	tar cf {USER}-bsp.tar *.c *.h Makefile
+	tar cf ${USER}-bsp.tar *.c Makefile
 	gzip *.tar
