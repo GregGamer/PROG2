@@ -1,4 +1,4 @@
-I={1..11}
+I={1..2}
 USER= WaG
 SOURCES = $(shell find . -iname '*.c' -exec basename {} .c ';') 
 
