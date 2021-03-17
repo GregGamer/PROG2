@@ -14,8 +14,7 @@ files:
 
 clean:
 	@echo "Cleaning up"
-	rm *.exe
-
+	find . -type f -not \( -iname "*.c" -or -iname "Makefile" \) -delete
 %: %.c
 	gcc -o $@ -g -Wall $< -lm 
 
