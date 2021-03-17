@@ -9,24 +9,24 @@ const int GAMEFIELD_WIDTH = 8;
 const int GAMEFIELD_HEIGHT = 8;
 
 //prototypen
-void initGamefield(int *WaG_Gamefield[GAMEFIELD_WIDTH][GAMEFIELD_HEIGHT]);
+void initGamefield(int WaG_Gamefield[GAMEFIELD_WIDTH][GAMEFIELD_HEIGHT]);
 void printGamefield(int WaG_Gamefield[GAMEFIELD_WIDTH][GAMEFIELD_HEIGHT]);
 
 int main (void) {
     //variablen
     int WaG_Gamefield[GAMEFIELD_HEIGHT][GAMEFIELD_WIDTH];
 
-    initGamefield((int *)WaG_Gamefield);
+    initGamefield(WaG_Gamefield);
     printGamefield(WaG_Gamefield);
 
 
     return 0;
 }
 
-void initGamefield (int *WaG_Gamefield[GAMEFIELD_WIDTH][GAMEFIELD_HEIGHT]) {
+void initGamefield (int WaG_Gamefield[GAMEFIELD_WIDTH][GAMEFIELD_HEIGHT]) {
     for(int i = 0; i<GAMEFIELD_WIDTH; ++i){
         for (int j = 0; j < GAMEFIELD_HEIGHT; ++j){
-            *WaG_Gamefield[i][j] = 0;
+            (WaG_Gamefield[i][j]) = 0;
         }
     }
 }
