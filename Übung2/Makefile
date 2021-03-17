@@ -1,4 +1,4 @@
-I={1..2}
+I={1..11}
 USER= WaG
 SOURCES = $(shell find . -iname '*.c' -exec basename {} .c ';') 
 
@@ -14,10 +14,9 @@ files:
 
 clean:
 	@echo "Cleaning up"
-	rm *.exe
-
+	find . -type f -not \( -iname "*.c" -or -iname "Makefile" \) -delete
 %: %.c
-	gcc -o $@.exe -g -Wall $< -lm 
+	gcc -o $@ -g -Wall $< -lm 
 
 abgabe:
 	tar cf ${USER}-bsp.tar *.c Makefile
