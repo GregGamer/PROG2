@@ -15,6 +15,7 @@ files:
 clean:
 	@echo "Cleaning up"
 	find . -type f -not \( -iname "*.c" -or -iname "Makefile" \) -delete
+
 %: %.c
 	gcc -o $@ -g -Wall $< -lm 
 

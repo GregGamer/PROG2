@@ -10,14 +10,10 @@ int main (void){
     printf("Bitte den Euro Betrag eingeben: "); 
     scanf("%d",&input);
 
-    for(int i = 0; i<(int)sizeof(euros);++i){
-        if (input < 0){
-            return 0;
-        }
-
+    for(int i = 0; i<(int)sizeof(euros) && input > 0;++i){
         printf("%d€: %d",euros[i],input/euros[i]);
 
         input = input % euros[i];
     }
-
+    return 0;
 }
