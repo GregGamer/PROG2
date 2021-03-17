@@ -10,7 +10,7 @@ say_hello:
 
 files:
 	@echo "Creating empty text files..."
-	touch ${USER}-bsp{1..11}.c
+	touch ${USER}-bsp${I}.c
 
 clean:
 	@echo "Cleaning up"
