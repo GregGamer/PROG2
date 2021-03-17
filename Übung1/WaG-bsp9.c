@@ -4,8 +4,6 @@
 //include
 #include <stdio.h>
 
-//protypen
-
 //main
 int main (void){
     //variablen
@@ -18,7 +16,7 @@ int main (void){
     scanf("%d",&start[1]);
     printf("Punkt Zx: ");
     scanf("%d",&end[0]);
-    printf("Punkt Zx: ");
+    printf("Punkt Zy: ");
     scanf("%d",&end[1]);
 
     for(;start[0]!=end[0] || start[1]!=end[1];){
