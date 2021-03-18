@@ -7,6 +7,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
+#include <unistd.h>
 
 //globale constanten
 const int IS_NUMMER = 8;
@@ -19,16 +20,32 @@ void WaG_PrintGame(int WaG_Gamefield[GAMEFIELD_WIDTH][GAMEFIELD_HEIGHT], int rob
 void WaG_CreateObstacles(int WaG_Gamefield[GAMEFIELD_WIDTH][GAMEFIELD_HEIGHT], int n);
 void WaG_MoveOneStep(int WaG_Gamefield[GAMEFIELD_WIDTH][GAMEFIELD_HEIGHT], int roboterPosition[]);
 void WaG_StepByStep(int WaG_Gamefield[GAMEFIELD_WIDTH][GAMEFIELD_HEIGHT], int roboterPosition[]);
+void WaG_N_Steps(int WaG_Gamefield[GAMEFIELD_WIDTH][GAMEFIELD_HEIGHT], int roboterPosition[]);
 
 int main (void) {
     //variablen
     int WaG_Gamefield[GAMEFIELD_HEIGHT][GAMEFIELD_WIDTH];
-    int roboterPosition[] = {0,7,IS_NUMMER % 4};
+    int roboterPosition[] = {IS_NUMMER%8%GAMEFIELD_WIDTH,IS_NUMMER%4%GAMEFIELD_HEIGHT,IS_NUMMER % 4};
     int anzObstacles = 5;
+    char input[5] = "";
 
     initGamefield(WaG_Gamefield);
     WaG_CreateObstacles(WaG_Gamefield, anzObstacles);
-    WaG_StepByStep(WaG_Gamefield,roboterPosition);
+
+    while (strcmp(input,"1") && strcmp(input,"2")){
+        //input
+        printf("1: Step by Step\n");
+        printf("2: Move N Steps\n");
+        printf("Eingabe: ");
+        scanf("%s",input);
+        printf("----------------\n");
+    }
+
+    if(strcmp(input,"2")){
+        WaG_N_Steps(WaG_Gamefield,roboterPosition);
+    } else {
+        WaG_StepByStep(WaG_Gamefield, roboterPosition);
+    }
 
     return 0;
 }
@@ -43,7 +60,7 @@ void initGamefield (int WaG_Gamefield[GAMEFIELD_WIDTH][GAMEFIELD_HEIGHT]) {
 
 void WaG_PrintGame (int WaG_Gamefield[GAMEFIELD_WIDTH][GAMEFIELD_HEIGHT], int roboterPosition[]) {
 
-//    system("@cls||clear");
+    system("@cls||clear");
     
     for(int i = 0; i < GAMEFIELD_WIDTH; ++i){
         for (int j = 0; j < GAMEFIELD_HEIGHT; ++j){
@@ -106,4 +123,22 @@ void WaG_StepByStep(int WaG_Gamefield[GAMEFIELD_WIDTH][GAMEFIELD_HEIGHT], int ro
         WaG_MoveOneStep(WaG_Gamefield, roboterPosition);
         WaG_PrintGame(WaG_Gamefield, roboterPosition);
     }
+}
+
+void WaG_N_Steps(int WaG_Gamefield[GAMEFIELD_WIDTH][GAMEFIELD_HEIGHT], int roboterPosition[]){
+    //variablen
+    int input;
+
+    //input
+    printf("Eingabe der Anzahl der Schritte: ");
+    scanf("%d",&input);
+
+    WaG_PrintGame(WaG_Gamefield,roboterPosition);
+
+    for (int i = 0; i < input; ++i){
+        WaG_MoveOneStep(WaG_Gamefield,roboterPosition);
+        sleep(1);
+        WaG_PrintGame(WaG_Gamefield,roboterPosition);
+    }
+
 }
