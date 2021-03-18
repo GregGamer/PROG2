@@ -45,10 +45,10 @@ void WaG_PrintGame (int WaG_Gamefield[GAMEFIELD_WIDTH][GAMEFIELD_HEIGHT], int ro
 
 //    system("@cls||clear");
     
-    for(int i = 0; i < GAMEFIELD_HEIGHT; ++i){
-        for (int j = 0; j < GAMEFIELD_WIDTH; ++j){
+    for(int i = 0; i < GAMEFIELD_WIDTH; ++i){
+        for (int j = 0; j < GAMEFIELD_HEIGHT; ++j){
 
-            if(roboterPosition[0] == i && roboterPosition[1] == j){
+            if(roboterPosition[0] == j && roboterPosition[1] == i){
                 printf("0");
                 continue;
             }
@@ -87,9 +87,6 @@ void WaG_MoveOneStep(int WaG_Gamefield[GAMEFIELD_WIDTH][GAMEFIELD_HEIGHT], int r
     //Berechnet mir die neue Blickrichtung wenn vor dem Bot ein Hinderniss ist
     roboterPosition[2] = (WaG_Gamefield[nextStep[0]][nextStep[1]] == 1) * \
                          (((IS_NUMMER/5) * 1 + !(IS_NUMMER/5) * -1 + roboterPosition[2]) % 4); 
-
-    nextStep[0] = roboterPosition[0] + ((roboterPosition[2] == 1) * 1 + (roboterPosition[2] == 3 * -1));
-    nextStep[1] = roboterPosition[1] + ((roboterPosition[2] == 2) * 1 + (roboterPosition[2] == 0 * -1));
 
     roboterPosition[0] = nextStep[0] % GAMEFIELD_WIDTH;
     roboterPosition[1] = nextStep[1] % GAMEFIELD_HEIGHT;
