@@ -17,13 +17,14 @@ void printline_WaG(char input[]);
 int main (){
     //variablen
     char input[20] = "";
+    char *ret;
 
     while (1){
         //input
         printf("Text eingeben: ");          //quit
-        fgets(input, 20, stdin);
+        ret = fgets(input, 20, stdin);
 
-        if(!strcmp(input,"quit\n")){
+        if(!ret || !strcmp(input,"quit\n")){
             break;
         }
 
