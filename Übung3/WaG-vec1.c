@@ -15,15 +15,21 @@ void chletter_WaG(char input[]);
 //main
 int main (){
     //variablen
-    char input[20];
+    char input[20] = "";
 
-    //input
-    printf("Text eingeben: ");
-    fgets(input, 20, stdin);
+    while (true){
+        //input
+        printf("Text eingeben: ");          //quit
+        fgets(input, 20, stdin);
 
-    printf("Eingegebener Text: %s", input);
-    chletter_WaG(input);
-    printf("Geaenderter Text: %s", input);
+        if(!strcmp(input,"quit\n")){
+            break;
+        }
+
+        printf("Eingegebener Text: %s", input);
+        chletter_WaG(input);
+        printf("Geaenderter Text: %s", input);
+    }
 
     return 0;
 }
