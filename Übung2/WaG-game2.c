@@ -41,8 +41,8 @@ int main (void) {
             roboterPosition[3] += WaG_Gamefield[roboterPosition[1]][roboterPosition[0]];
             WaG_Gamefield[roboterPosition[1]][roboterPosition[0]] = 0;
         }
-        roboterPosition[3] -= Y;
 
+        roboterPosition[3] -= Y;
     }
 
     return 0;
@@ -101,7 +101,7 @@ void WaG_PrintGame (int WaG_Gamefield[GAMEFIELD_WIDTH][GAMEFIELD_HEIGHT], int ro
         printf("     GEWONNEN     \n");
         printf("==================\n");
 
-        roboterPosition[3] = 0;
+        exit(1);
     }
 }
 
@@ -135,6 +135,6 @@ void WaG_MoveRoboter(int roboterPosition[]){
     } else if (!strcmp(&input,"l")){    //right
         roboterPosition[0] = (roboterPosition[0]+1)%GAMEFIELD_WIDTH;
     } else if (!strcmp(&input,"q")){    //quit
-        roboterPosition[3] = 0;
+        exit(1);
     }
 }
