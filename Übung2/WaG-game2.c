@@ -11,25 +11,25 @@
 
 //globale constanten
 const int IS_NUMMER = 8;
-const int GAMEFIELD_WIDTH = 28;
-const int GAMEFIELD_HEIGHT = 28;
+const int GAMEFIELD_WIDTH = 24;
+const int GAMEFIELD_HEIGHT = 24;
 const int X = 5;
 const int Y = 1;
 const int Z = 15;
 
 //prototypen
-void initGamefield(int WaG_Gamefield[GAMEFIELD_WIDTH][GAMEFIELD_HEIGHT]);
-void WaG_PrintGame(int WaG_Gamefield[GAMEFIELD_WIDTH][GAMEFIELD_HEIGHT], int roboterPosition[]);
-void WaG_CreateObstacles(int WaG_Gamefield[GAMEFIELD_WIDTH][GAMEFIELD_HEIGHT], int n);
+void initGamefield(int WaG_Gamefield[][GAMEFIELD_HEIGHT]);
+void WaG_PrintGame(int WaG_Gamefield[][GAMEFIELD_HEIGHT], int roboterPosition[]);
+void WaG_CreateObstacles(int WaG_Gamefield[][GAMEFIELD_HEIGHT], int n);
 void WaG_MoveRoboter(int roboterPosition[]);
 
 int main (void) {
     //variablen
-    int WaG_Gamefield[GAMEFIELD_WIDTH][GAMEFIELD_HEIGHT];
+    int WaG_Gamefield[GAMEFIELD_WIDTH][GAMEFIELD_HEIGHT] = {{0}};
     int roboterPosition[] = {(IS_NUMMER%8)%GAMEFIELD_WIDTH,(IS_NUMMER%4)%GAMEFIELD_HEIGHT,IS_NUMMER % 4,Z};
     int anzObstacles = (GAMEFIELD_WIDTH*GAMEFIELD_HEIGHT)*0.15;
 
-    initGamefield(WaG_Gamefield);
+    //initGamefield(WaG_Gamefield);
     WaG_CreateObstacles(WaG_Gamefield, anzObstacles);
     WaG_PrintGame(WaG_Gamefield,roboterPosition);
 
@@ -48,7 +48,7 @@ int main (void) {
     return 0;
 }
 
-void initGamefield (int WaG_Gamefield[GAMEFIELD_WIDTH][GAMEFIELD_HEIGHT]) {
+void initGamefield (int WaG_Gamefield[][GAMEFIELD_HEIGHT]) {
     for(int i = 0; i<GAMEFIELD_HEIGHT; ++i){
         for (int j = 0; j < GAMEFIELD_WIDTH; ++j){
             (WaG_Gamefield[i][j]) = 0;
@@ -56,7 +56,7 @@ void initGamefield (int WaG_Gamefield[GAMEFIELD_WIDTH][GAMEFIELD_HEIGHT]) {
     }
 }
 
-void WaG_PrintGame (int WaG_Gamefield[GAMEFIELD_WIDTH][GAMEFIELD_HEIGHT], int roboterPosition[]) {
+void WaG_PrintGame (int WaG_Gamefield[][GAMEFIELD_HEIGHT], int roboterPosition[]) {
     int sum = 0;
 
     system("@cls||clear");
@@ -105,7 +105,7 @@ void WaG_PrintGame (int WaG_Gamefield[GAMEFIELD_WIDTH][GAMEFIELD_HEIGHT], int ro
     }
 }
 
-void WaG_CreateObstacles(int WaG_Gamefield[GAMEFIELD_WIDTH][GAMEFIELD_HEIGHT],int n){
+void WaG_CreateObstacles(int WaG_Gamefield[][GAMEFIELD_HEIGHT],int n){
     int Xrand;
     int Yrand;
     time_t t;
@@ -115,7 +115,13 @@ void WaG_CreateObstacles(int WaG_Gamefield[GAMEFIELD_WIDTH][GAMEFIELD_HEIGHT],in
     for (int i = 0; i < n; ++i){
         Xrand = rand() % GAMEFIELD_WIDTH;
         Yrand = rand() % GAMEFIELD_HEIGHT;
-        WaG_Gamefield[Xrand][Yrand] = rand() % 5 + 1;
+        
+        if (Xrand != 0 && Yrand != 0){
+            if (WaG_Gamefield[Xrand][Yrand] >= 1){
+                --i;
+            }
+            WaG_Gamefield[Xrand][Yrand] = rand() % 5 + 1;
+        }
     }
 }
 
