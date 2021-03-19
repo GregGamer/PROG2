@@ -9,7 +9,8 @@
 
 //prototypes
 void chletter_WaG(char input[]);
-
+void chdigit_WaG(char input[]);
+void printline_WaG(char input[]);
 //globalen Variablen
 
 //main
@@ -17,7 +18,7 @@ int main (){
     //variablen
     char input[20] = "";
 
-    while (true){
+    while (1){
         //input
         printf("Text eingeben: ");          //quit
         fgets(input, 20, stdin);
@@ -26,9 +27,11 @@ int main (){
             break;
         }
 
-        printf("Eingegebener Text: %s", input);
+        printf("%s", input);
         chletter_WaG(input);
-        printf("Geaenderter Text: %s", input);
+        chdigit_WaG(input);
+        printf("%s", input);
+        printline_WaG(input);
     }
 
     return 0;
@@ -42,5 +45,25 @@ void chletter_WaG(char input[]){
             input[i] = tolower(input[i]);
         }
     }
+}
 
+void chdigit_WaG(char input[]){
+    for (int i = 0; strcmp(&input[i],"\n"); ++i){
+        if ( isdigit(input[i]) ){
+            int help = (int)input[i] - 48; 
+            help = (help +10 -1) % 10;
+            input[i] = (char)help + 48;
+        } 
+    }
+}
+
+void printline_WaG(char input[]){
+    for (int i = 0; strcmp(&input[i],"\n"); ++i){
+        int help = (int)input[i]; 
+        if (help >= 32 && help <= 127)
+            printf("%c %x|",input[i],help);
+        else
+            printf("?");
+    }
+    printf("\n");
 }
