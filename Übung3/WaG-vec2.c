@@ -16,7 +16,6 @@ int main (void) {
     //variablen
     char str[20] = "Hallo Welt!\n";
     char c[] = "llo";
-/*TODO Bugfixing, bei strcipbrk kommt das Falsche zurück, weil anscheinend was falsch in c steh*/
     const char *result;
 
     result = strcichr(str,c[0]);

@@ -9,11 +9,11 @@
 //Makros und globale Constanten
 
 //Prototypen
-void WaG_einlesen(int n, int *numbers);
-float WaG_mittelwert_ermitteln(int n, int *numbers);
-void WaG_sortieren(int n, int *numbers);
-void WaG_benachbarte_mit_minimalen_abstand_ermitteln(int n, int *numbers);
-void WaG_alles_ausgeben(int n, int *numbers);
+void WaG_einlesen(const int n, int *numbers);
+float WaG_mittelwert_ermitteln(const int n, int *numbers);
+void WaG_sortieren(const int n, int *numbers);
+int WaG_benachbarte_mit_minimalen_abstand_ermitteln(const int n, int *numbers);
+void WaG_alles_ausgeben(const int n, int *numbers);
 
 int main (void) {
     //variablen
@@ -31,42 +31,53 @@ int main (void) {
     return 0;
 }
 
-void WaG_einlesen(int n, int *numbers){
-    for (int i = 0; i<n; ++i){
-        printf("Zahl %d: ",i);
-        scanf("%d", &numbers[i]);
+void WaG_einlesen(const int n, int *numbers){
+    int *num = numbers;
+    for (int i = 0; i<n;++i,++num){
+        printf("Zahl %d: ",i+1);
+        scanf("%d", num);
     }
 }
 
-float WaG_mittelwert_ermitteln(int n, int *numbers){
-    int sum = 0;
-    for(int i = 0; i < n; ++i)
-        sum += numbers[i];
+float WaG_mittelwert_ermitteln(const int n, int *numbers){
+    float sum = 0;
+    int *num = numbers;
+    for(int i = 0; i < n; ++i,++num)
+        sum += *num;
     return sum/n;
 }
 
-void WaG_sortieren(int n, int *numbers){
-    for (int i = 0; i < n; ++i)
-        for (int j = 1; j < n-i-1; ++j)
-            if(numbers[j]>numbers[j+1])
-                numbers[j+1] = numbers[j];
+void WaG_sortieren(const int n, int *numbers){
+    int tmp;
+    int *num = numbers;
+    for (int i = 1; i < n; ++i){
+        for (int j = 0; j < n-i; ++j,++num){
+            if(numbers[j] > numbers[j+1]){
+                tmp = numbers[j];
+                numbers[j] = numbers[j+1];
+                numbers[j+1] = tmp;
+            }
+        }
+    }
 }
 
-void WaG_benachbarte_mit_minimalen_abstand_ermitteln(int n, int *numbers){
-    int min = numbers[0];
+int WaG_benachbarte_mit_minimalen_abstand_ermitteln(const int n, int *numbers){
+    int *num = numbers;
+    int min = *num;
     WaG_sortieren(n, numbers);
-    for (int i = 0; i < n-1; ++i)
-        min = (numbers[i+1]-numbers[i]<min)*(numbers[i+1]-numbers[i])+(numbers[i+1]-numbers[i]>=min)*min;
-
+    for (int i = 0; i < n-1; ++i,++num)
+        min = (*(num+1)-*num<min)*(*(num+1)-*num)+(*(num+1)-*num>=min)*min;
+    return min;
 }
 
-void WaG_alles_ausgeben(int n, int *numbers){
+void WaG_alles_ausgeben(const int n, int *numbers){
     printf("Anzahl der Zahlen: %d\n",n);
     printf("Die Zahlen: ");
-/*    int *help = numbers;*/
-    for(int i = 0; i<n;++i){
-        printf(" %d",numbers[i]);
+    WaG_sortieren(n,numbers);
+    int *num = numbers;
+    for(int i = 0; i<n;++i,++num){
+        printf(" %d",*num);
     }
-    printf("\n");
+    printf("\nMittelwert: %f\nMinimaler Abstand: %d\n", WaG_mittelwert_ermitteln(n,numbers), WaG_benachbarte_mit_minimalen_abstand_ermitteln(n,numbers));
 }
 
