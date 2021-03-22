@@ -4,28 +4,28 @@
 //includes
 #include <stdio.h>
 #include <stdlib.h>
-
-//Makros und globale Constanten
+#include <ctype.h>
 
 //Prototypen
 const char *strcichr (const char *s, char c);                   //strchr
 const char *strrcichr (const char *s, char c);                   //strrchar
 const char *strcipbrk (const char *s, const char *accapt);      //strpbrk
 
+//main
 int main (void) {
     //variablen
     char str[20] = "Hallo Welt!\n";
-    char c = " ";
-    char result[5];
+    char c[] = "llo";
+    const char *result;
 
-    result = strcichr(str,c);
-    printf("%s",result);
+    result = strcichr(str,c[0]);
+    printf("strcichr: %c\n",*result);
 
-    result = strrcichr(str,c);
-    printf("%s",result);
+    result = strrcichr(str,c[0]);
+    printf("strrcichr: %c\n",*result);
 
     result = strcipbrk(str,c);
-    printf("%s",result);
+    printf("strcipbrk: %c\n",*result);
 
 
     return 0;
@@ -33,19 +33,25 @@ int main (void) {
 
 
 const char *strcichr (const char *s, char c){                   //strchr
-
+    for(int i=0; i < sizeof(s);++i)
+        if (c==tolower(s[i]))
+            return &s[i];
     return NULL;
 }
 
 
-const char *strrcichr (const char *s, char c){                   //strchr
-
+const char *strrcichr (const char *s, char c){                   //strrchar
+    for(int i=sizeof(s); i ;--i)
+        if (c==tolower(s[i]))
+            return &s[i];
     return NULL;
 }
 
 
 const char *strcipbrk (const char *s, const char *accapt){      //strpbrk
-
-
+    for (int i = 0; i<sizeof(s);++i)
+        for(int j = 0; j<sizeof(accapt);++j)
+            if(s[i]==accapt[j])
+                return &s[i];
     return NULL;
 }
