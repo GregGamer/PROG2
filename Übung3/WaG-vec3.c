@@ -73,6 +73,6 @@ void WaG_alles_ausgeben(int n, int numbers[]){
     for(int i = 0; i<n;++i){
         printf(" %d",numbers[i]);
     }
-    printf("\nQuersumme: %f\nMinimaler Abstand: %d\n", WaG_mittelwert_ermitteln(n,numbers), WaG_benachbarte_mit_minimalen_abstand_ermitteln(n,numbers));
+    printf("\Mittelwert: %f\nMinimaler Abstand: %d\n", WaG_mittelwert_ermitteln(n,numbers), WaG_benachbarte_mit_minimalen_abstand_ermitteln(n,numbers));
 }
 
