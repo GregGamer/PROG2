@@ -16,6 +16,7 @@ int main (void) {
     //variablen
     char str[20] = "Hallo Welt!\n";
     char c[] = "llo";
+/*TODO Bugfixing, bei strcipbrk kommt das Falsche zurück, weil anscheinend was falsch in c steh*/
     const char *result;
 
     result = strcichr(str,c[0]);
@@ -47,11 +48,10 @@ const char *strrcichr (const char *s, char c){                   //strrchar
     return NULL;
 }
 
-
 const char *strcipbrk (const char *s, const char *accapt){      //strpbrk
     for (int i = 0; i<sizeof(s);++i)
         for(int j = 0; j<sizeof(accapt);++j)
-            if(s[i]==accapt[j])
+            if(tolower(s[i])==tolower(accapt[j]))
                 return &s[i];
     return NULL;
 }
