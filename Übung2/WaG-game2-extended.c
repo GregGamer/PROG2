@@ -151,13 +151,13 @@ void WaG_MoveRoboter(int roboterPosition[]){
     input = getchar();
     system("/bin/stty cooked");
 
-    if (!strcmp(&input,"h")){           //left
+    if (!strcmp(&input,"a")){           //left
         roboterPosition[0] = (roboterPosition[0]+GAMEFIELD_WIDTH-1)%GAMEFIELD_WIDTH;
-    } else if (!strcmp(&input,"j")){    //bottom
+    } else if (!strcmp(&input,"s")){    //bottom
         roboterPosition[1] = (roboterPosition[1]+1)%GAMEFIELD_HEIGHT;
-    } else if (!strcmp(&input,"k")){    //up
+    } else if (!strcmp(&input,"w")){    //up
         roboterPosition[1] = (roboterPosition[1]+GAMEFIELD_HEIGHT-1)%GAMEFIELD_HEIGHT;
-    } else if (!strcmp(&input,"l")){    //right
+    } else if (!strcmp(&input,"d")){    //right
         roboterPosition[0] = (roboterPosition[0]+1)%GAMEFIELD_WIDTH;
     } else if (!strcmp(&input,"q")){    //quit
         exit(1);
