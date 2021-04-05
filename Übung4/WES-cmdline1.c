@@ -54,13 +54,12 @@ void readLines(char *lines[], size_t *const quantity)
 		eof = fgets(line, MAX_CHARS, stdin);
 		if (!eof)
 			break;
-		lines[counter] = calloc(sizeof(char), strlen(line)+1);
+		lines[counter] = calloc(strlen(line)+1, sizeof(char));
 		strcpy(lines[counter], line);
 		++counter;
 	}
 	*quantity = counter;
 }
-:q
 
 void sortLines(char *lines[], const size_t quantity, const bool desc, const int crit)
 {

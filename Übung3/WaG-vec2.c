@@ -28,28 +28,34 @@ int main (void) {
     printf("strcipbrk: %c\n",*result);
 
 
+    char *s;
+    &s      //addresse vom pointer;
+    *s      //value
+    s       //Adresse von value 
+
     return 0;
 }
 
-
 const char *strcichr (const char *s, char c){                   //strchr
-    for(int i=0; i < sizeof(s);++i)
-        if (c==tolower(s[i]))
-            return &s[i];
+    char z = tolower(c);
+    char Z = toupper(c);
+    for(; *s != '\0'; ++s)
+        if(*s==z || *s==Z)
+            return s;
     return NULL;
 }
 
 
 const char *strrcichr (const char *s, char c){                   //strrchar
-    for(int i=sizeof(s); i ;--i)
-        if (c==tolower(s[i]))
+    for(int i=strlen(s); i ;--i)
+        if (tolower(c)==tolower(s[i]))
             return &s[i];
     return NULL;
 }
 
 const char *strcipbrk (const char *s, const char *accapt){      //strpbrk
-    for (int i = 0; i<sizeof(s);++i)
-        for(int j = 0; j<sizeof(accapt);++j)
+    for (int i = 0; i<strlen(s);++i)
+        for(int j = 0; j<strlen(accapt);++j)
             if(tolower(s[i])==tolower(accapt[j]))
                 return &s[i];
     return NULL;

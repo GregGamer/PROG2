@@ -67,25 +67,15 @@ void WES_PrintDarkField(const int gamefield[][SIZE])
 
 void WES_PrintGameField(const int gamefield[][SIZE])
 {
-	for (int cRow=0; cRow<SIZE; ++cRow)
-	{
-		for (int cCol=0; cCol<SIZE; ++cCol)
-		{
-			if (gamefield[cRow][cCol] != 0)
-			{
-				//printf("\033[0;32m"); //green
+	for (int cRow=0; cRow<SIZE; ++cRow){
+		for (int cCol=0; cCol<SIZE; ++cCol){
+			if (gamefield[cRow][cCol] != 0){
 				printf("\033[0;31m"); //red
-				printf("%d ", gamefield[cRow][cCol]);
-			}
-			else 
-			{
-				//printf("\033[0;30m"); //black
-				printf("\033[0;37m"); //white
-				printf("%d ", gamefield[cRow][cCol]);
 			}
 
+			printf("%d ", gamefield[cRow][cCol]);
+		    printf("\033[0;37m"); //white
 		}
-		printf("\033[0;37m"); //white
 		printf("\n");
 	}
 }
